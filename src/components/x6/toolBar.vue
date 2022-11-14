@@ -1,11 +1,17 @@
 <template>
   <main>
-    <TheWelcome />
+   hello toolBar
   </main>
 </template>
 
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+
 </script>
+
+<style lang="less" scoped>
+
+</style>
+
+
 
 
