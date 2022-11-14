@@ -1,7 +1,7 @@
 <template>
   <main class="x6-view-home">
     <div class="left-wrap">
-       <DataSource/> 
+       <DataSource @mouseDownCallback="mouseDownCallback"/> 
     </div>
     <div class="right-wrap">
         <ToolBar class="tool-bar-wrap"/>
@@ -11,15 +11,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, shallowRef ,provide ,onMounted } from 'vue'
 import DataSource from '@/components/x6/dataSource.vue'
 import ToolBar from '@/components/x6/toolBar.vue'
 import initGrap from '@/components/x6/index'
+import { startDrag } from '@/components/x6/Dnd'
 
-let grapContainerRef = ref()
+let grapContainerRef = ref() // graph dom 
+let graphRef = shallowRef() // graph 实例
+
+provide('graphRef',graphRef.value)
 
 // 获取grap容器宽高
-const getGrapContainerWH = (dom:HTMLElement) => {
+const getGraphContainerWH = (dom:HTMLElement) => {
     if (!dom) return
     const { width, height } = dom.getBoundingClientRect()
     return {
@@ -28,15 +32,19 @@ const getGrapContainerWH = (dom:HTMLElement) => {
     }
 }
 
+const mouseDownCallback = ({ e, data }) => {
+    startDrag(graphRef.value, e, data)
+}
+
 // 初始化grap
 const init = async () => {
     try {
-        const { width, height } = getGrapContainerWH(grapContainerRef.value)
+        const { width, height } = getGraphContainerWH(grapContainerRef.value)
         const options = {
             width,
             height
         }
-        let grap = initGrap(grapContainerRef.value, options) 
+        graphRef.value = initGrap(grapContainerRef.value, options) 
     
     } catch(error) {
         console.log(error)

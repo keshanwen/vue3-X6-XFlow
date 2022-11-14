@@ -1,4 +1,5 @@
 import { Graph } from '@antv/x6';
+import intiDnd from './dnd'
 import showPorts from '@/components/x6/showPorts'
 
 // 生成 grap 实例
@@ -26,9 +27,9 @@ function FlowGrap (container: HTMLElement, options: any = {}):void {
 
 // 初始化 graph实例，配置 
 function init(container: HTMLElement, options: any = {}) {
-    let grap = new FlowGrap(container, options) 
-    showPorts(grap)
+    let graph = new FlowGrap(container, options) 
+    graph.dnd = intiDnd(graph)
 
-    return grap
+    return graph
 }
 export default init
