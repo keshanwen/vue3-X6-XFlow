@@ -16,6 +16,8 @@ const intiDnd = function(target, options = {}) {
 }
 
 const startDrag = function(graph, e, data ) {
+
+    if (!graph.dnd) return
     
    const node = graph.createNode({
     width: 100,
