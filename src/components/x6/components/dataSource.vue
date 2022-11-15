@@ -8,20 +8,21 @@
 
 <script setup lang="ts">
 import { ref, inject,onMounted, watch} from 'vue'
+import { startDrag } from '@/components/x6/Dnd'
 
-const emits = defineEmits(['mouseDownCallback'])
-
-const graphRef = inject('allObj')
+const allObj:any = inject('allObj')
 
 let datasource = ref([
-    { label: '数据一', data: 'a'},
-    { label: '数据二', data: 'b'},
+    { label: '数据一', data: 'a', status: 'default' },
+    { label: '数据二', data: 'b', status: 'default' },
 ])
 
 
 const mouseDownCallback = (e: Event,item: any) => {
-   emits('mouseDownCallback', { e, data: item })
+   startDrag(allObj.value, e, item)
 }
+
+
 
 
 </script>

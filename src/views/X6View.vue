@@ -1,7 +1,7 @@
 <template>
   <main class="x6-view-home">
     <div class="left-wrap">
-       <DataSource @mouseDownCallback="mouseDownCallback"/> 
+       <DataSource/> 
     </div>
     <div class="right-wrap">
         <ToolBar class="tool-bar-wrap"/>
@@ -15,12 +15,13 @@ import { ref, shallowRef ,provide ,onMounted } from 'vue'
 import DataSource from '@/components/x6/components/dataSource.vue'
 import ToolBar from '@/components/x6/components/toolBar.vue'
 import initGrap from '@/components/x6/index'
-import { startDrag } from '@/components/x6/Dnd'
+
+
 
 let grapContainerRef = ref() // graph dom 
-let allObj = shallowRef() // 所有的值
+let allObj: any = shallowRef() // 所有的值
 
-provide('allObj',allObj.value)
+provide('allObj',allObj)
 
 // 获取grap容器宽高
 const getGraphContainerWH = (dom:HTMLElement): any => {
@@ -30,10 +31,6 @@ const getGraphContainerWH = (dom:HTMLElement): any => {
         width,
         height
     }
-}
-
-const mouseDownCallback = ({ e, data }) => {
-    startDrag(allObj.value, e, data)
 }
 
 // 初始化grap

@@ -1,5 +1,4 @@
 import { Addon } from '@antv/x6'
-import { ports } from './config/port'
 
 
 const intiDnd = function(target: any, options = {}) {
@@ -19,22 +18,17 @@ const intiDnd = function(target: any, options = {}) {
 
 const startDrag = function(allObj: any, e: Event, data: any ) {
     const { graph,dnd } = allObj
+    const { label } = data
     if (!dnd) return
     
    const node = graph.createNode({
-    width: 100,
+    shape: 'dag-node',
+    width: 200,
     height: 40,
-    attrs: {
-      label: {
-        text: 'Rect',
-        fill: '#6a6c8a',
-      },
-      body: {
-        stroke: '#31d0c6',
-        strokeWidth: 2,
-      },
-    },
-    ports: { ...ports },
+    data: {
+      label,
+      status: "default"
+    }
   })
 
   dnd.start(node, e)
