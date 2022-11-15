@@ -11,14 +11,15 @@ import { ref, inject,onMounted, watch} from 'vue'
 
 const emits = defineEmits(['mouseDownCallback'])
 
-const graphRef = inject('graphRef')
+const graphRef = inject('allObj')
+
 let datasource = ref([
     { label: '数据一', data: 'a'},
     { label: '数据二', data: 'b'},
 ])
 
 
-const mouseDownCallback = (e,item) => {
+const mouseDownCallback = (e: Event,item: any) => {
    emits('mouseDownCallback', { e, data: item })
 }
 

@@ -18,12 +18,12 @@ import initGrap from '@/components/x6/index'
 import { startDrag } from '@/components/x6/Dnd'
 
 let grapContainerRef = ref() // graph dom 
-let graphRef = shallowRef() // graph 实例
+let allObj = shallowRef() // 所有的值
 
-provide('graphRef',graphRef.value)
+provide('allObj',allObj.value)
 
 // 获取grap容器宽高
-const getGraphContainerWH = (dom:HTMLElement) => {
+const getGraphContainerWH = (dom:HTMLElement): any => {
     if (!dom) return
     const { width, height } = dom.getBoundingClientRect()
     return {
@@ -33,7 +33,7 @@ const getGraphContainerWH = (dom:HTMLElement) => {
 }
 
 const mouseDownCallback = ({ e, data }) => {
-    startDrag(graphRef.value, e, data)
+    startDrag(allObj.value, e, data)
 }
 
 // 初始化grap
@@ -44,7 +44,7 @@ const init = async () => {
             width,
             height
         }
-        graphRef.value = initGrap(grapContainerRef.value, options) 
+        allObj.value = initGrap(grapContainerRef.value, options) 
     
     } catch(error) {
         console.log(error)

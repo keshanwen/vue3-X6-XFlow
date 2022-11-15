@@ -1,6 +1,6 @@
 import { Addon } from '@antv/x6'
 
-const intiDnd = function(target, options = {}) {
+const intiDnd = function(target: any, options = {}) {
     const { Dnd } = Addon
 
     if (!target) {
@@ -15,9 +15,9 @@ const intiDnd = function(target, options = {}) {
     return dnd
 }
 
-const startDrag = function(graph, e, data ) {
-
-    if (!graph.dnd) return
+const startDrag = function(allObj: any, e: Event, data: any ) {
+    const { graph,dnd } = allObj
+    if (!dnd) return
     
    const node = graph.createNode({
     width: 100,
@@ -34,7 +34,7 @@ const startDrag = function(graph, e, data ) {
     },
   })
 
-  graph.dnd.start(node, e)
+  dnd.start(node, e)
 }
 
 

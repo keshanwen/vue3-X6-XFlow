@@ -3,12 +3,12 @@ import intiDnd from './dnd'
 import showPorts from '@/components/x6/showPorts'
 
 // 生成 grap 实例
-function FlowGrap (container: HTMLElement, options: any = {}):void {
+function FlowGrap (container: HTMLElement, options: any = {}):any {
     if (!container) {
         throw Error('没有传入容器dom') 
         return
     } 
-    this.graph = new Graph({
+    const graph = new Graph({
         container,
         width: 400,
         height: 400,
@@ -22,14 +22,15 @@ function FlowGrap (container: HTMLElement, options: any = {}):void {
         ...options
     })
 
-   return this.graph
+    return {
+        graph
+    }
 }
 
 // 初始化 graph实例，配置 
 function init(container: HTMLElement, options: any = {}) {
-    let graph = new FlowGrap(container, options) 
-    graph.dnd = intiDnd(graph)
-
-    return graph
+    let allObj = FlowGrap(container, options) 
+    allObj.dnd = intiDnd(allObj.graph)
+    return allObj
 }
 export default init
