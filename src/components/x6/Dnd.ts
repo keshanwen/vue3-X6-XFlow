@@ -1,4 +1,6 @@
 import { Addon } from '@antv/x6'
+import { ports } from './config/port'
+
 
 const intiDnd = function(target: any, options = {}) {
     const { Dnd } = Addon
@@ -32,6 +34,7 @@ const startDrag = function(allObj: any, e: Event, data: any ) {
         strokeWidth: 2,
       },
     },
+    ports: { ...ports },
   })
 
   dnd.start(node, e)

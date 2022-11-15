@@ -12,8 +12,8 @@
 
 <script setup lang="ts">
 import { ref, shallowRef ,provide ,onMounted } from 'vue'
-import DataSource from '@/components/x6/dataSource.vue'
-import ToolBar from '@/components/x6/toolBar.vue'
+import DataSource from '@/components/x6/components/dataSource.vue'
+import ToolBar from '@/components/x6/components/toolBar.vue'
 import initGrap from '@/components/x6/index'
 import { startDrag } from '@/components/x6/Dnd'
 

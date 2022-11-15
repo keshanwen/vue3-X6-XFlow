@@ -1,6 +1,7 @@
 import { Graph } from '@antv/x6';
 import intiDnd from './dnd'
-import showPorts from '@/components/x6/showPorts'
+import initEvent from './Event'
+
 
 // 生成 grap 实例
 function FlowGrap (container: HTMLElement, options: any = {}):any {
@@ -31,6 +32,7 @@ function FlowGrap (container: HTMLElement, options: any = {}):any {
 function init(container: HTMLElement, options: any = {}) {
     let allObj = FlowGrap(container, options) 
     allObj.dnd = intiDnd(allObj.graph)
+    initEvent(allObj)
     return allObj
 }
 export default init
